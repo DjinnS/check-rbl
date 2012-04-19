@@ -5,10 +5,11 @@ Check if an IP is listed on the most used RBL
 <h3>Usage of check-rbl.pl:</h3>
 
 Required parameters:
-        -i,--ip         The IP to check
-        -q,--quiet      Quiet mode
-
-        -h,--help       Show help
+	<ul>
+		<li>-i,--ip         The IP to check</li>
+		<li>-q,--quiet      Quiet mode</li>
+		<li>-h,--help       Show help</li>
+	</ul>
 
     Report bugs or ask for new options: https://github.com/DjinnS/check-rbl
 
