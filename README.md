@@ -11,11 +11,12 @@ Required parameters:
 		<li>-h,--help       Show help</li>
 	</ul>
 
-    Report bugs or ask for new options: https://github.com/DjinnS/check-rbl
-
 <h3>Example:</h3>
 
 	$ perl check-rbl.pl -i 8.8.8.8
 	8.8.8.8 isn't listed on any RBL.
 
 Exit code is 0 if not, 1 if listed.
+
+Report bugs or ask for new options: https://github.com/DjinnS/check-rbl
+
