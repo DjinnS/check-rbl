@@ -39,7 +39,6 @@ use Net::DNS;
 my @rbl=(
 	'b.barracudacentral.org',
 	'cbl.abuseat.org',
-	'dnsbl.invaluement.com',
 	'http.dnsbl.sorbs.net',
 	'misc.dnsbl.sorbs.net',
 	'socks.dnsbl.sorbs.net',
