@@ -137,7 +137,6 @@ my @rbl=(
 	'dialups.mail-abuse.org',
 	'rdts.dnsbl.net.au',
 	'duinv.aupads.org',
-	'pool.dnsbl.solid.net',
 	'dynablock.sorbs.net',
 	'residential.block.transip.nl',
 	'dynip.rothen.com',
