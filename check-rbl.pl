@@ -140,7 +140,9 @@ my @rbl=(
 	'dul.blackhole.cantv.net',
 	'mail.people.it',
 	'blacklist.sci.kun.nl',
-	'all.spamblock.unit.liu.se'
+	'all.spamblock.unit.liu.se',
+	'spamguard.leadmon.net',
+	'csi.cloudmark.com'
 );
 ####
 # VARS
