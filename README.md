@@ -1,14 +1,15 @@
-<h1>check-rbl</h1>
+# check-rbl
 
 Check if an IP is listed on the most used RBL
 
-<h3>Usage of check-rbl.pl:</h3>
+## Usage of check-rbl.pl
 
 Required parameters:
-	<ul>
-		<li>-i,--ip         The IP to check</li>
-		<li>-q,--quiet      Quiet mode</li>
-		<li>-h,--help       Show help</li>
+  * -i,--ip         The IP to check
+  * -t,--timeout    Set timeout for request (Default: 10sec)
+  * -q,--quiet      Quiet mode
+  * -v,--verbose	Verbose mode
+  * -h,--help       Show help
 	</ul>
 
 <h3>Example:</h3>

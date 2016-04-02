@@ -8,7 +8,7 @@
 #
 # http://github.com/djinns/check-rbl
 #
-# Copyright (C) 2012 djinns@chninkel.net
+# Copyright (C) 2012 DjinnS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -144,10 +144,12 @@ my @rbl=(
 	'spamguard.leadmon.net',
 	'csi.cloudmark.com'
 );
+
 ####
 # VARS
 ####
-my ($o_ip,$o_help,$o_quiet,$o_verbose);
+my ($o_ip,$o_help,$o_quiet,$o_answer,$o_verbose);
+my $o_timeout=10;
 
 ####
 # FUNCTIONS
@@ -157,10 +159,12 @@ my ($o_ip,$o_help,$o_quiet,$o_verbose);
 sub check_options {
     Getopt::Long::Configure ("bundling");
     GetOptions(
-        'i:s'   => \$o_ip,		'ip:s'		=> \$o_ip,
-        'q'   	=> \$o_quiet,	'quiet'		=> \$o_quiet,
-        'v'   	=> \$o_verbose,	'verbose'	=> \$o_verbose,
-        'h'     => \$o_help,	'help'		=> \$o_help
+		'i:s'   => \$o_ip,		'ip:s'		=> \$o_ip,
+		't:s'	=> \$o_timeout, 'timeout:s' => \$o_timeout,
+		'q'   	=> \$o_quiet,	'quiet'		=> \$o_quiet,
+		'a'		=> \$o_answer,	'answer'	=> \$o_answer,
+		'v'   	=> \$o_verbose,	'verbose'	=> \$o_verbose,
+		'h'     => \$o_help,	'help'		=> \$o_help
     );
 
     if (!defined($o_ip)||($o_help)) {
@@ -176,7 +180,9 @@ Usage of $0
 
 Required parameters:
 	-i,--ip 	  The IP or subnet to check
+	-t,--timeout  Set timeout for request (Default: 10sec)
 	-q,--quiet	  Quiet mode
+	-a,--answer	  Print answer from resolver if listed
 	-v,--verbose  Verbose mode
 
 	-h,--help	Show help
@@ -198,13 +204,21 @@ sub check_rbl {
 		my $query = $reverse . $_;
 
 		my $res = Net::DNS::Resolver->new;
-		my $set = $res->search($query);
+		$res->udp_timeout($o_timeout);
+		$res->persistent_udp(1);
+		my $set = $res->send($query);
 
 		if ($set) {
-			if(!$o_quiet) { print $ip ." is listed on ". $_ ." !\n"; }
-			$warn=1;
+			
+			if($set->answer) {
+				if(!$o_quiet) { print $ip ." is listed on ". $_ ." !\n"; }
+				if($o_answer) { print "\n". $set->string ."\n"; }
+				$warn=1;
+			} else {
+				if($o_verbose) { print $ip ." isn't listed on ". $_ ." !\n"; }
+			}
 		} else {
-			if($o_verbose) { print $ip ." isn't listed on ". $_ ." !\n"; }
+			if($o_verbose) { print "timeout when querying ". $_ ." !\n"; }
 		}
 	}
 
