@@ -99,7 +99,6 @@ my @rbl=(
 	'bl.emailbasura.org',
 	'combined.rbl.msrbl.net',
 	'multi.uribl.com',
-	'black.uribl.com',
 	'cblless.anti-spam.org.cn',
 	'cblplus.anti-spam.org.cn',
 	'blackholes.five-ten-sg.com',
