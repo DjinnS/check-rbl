@@ -142,7 +142,8 @@ my @rbl=(
 	'blacklist.sci.kun.nl',
 	'all.spamblock.unit.liu.se',
 	'spamguard.leadmon.net',
-	'csi.cloudmark.com'
+	'csi.cloudmark.com',
+	'rbl.megarbl.net'
 );
 
 ####
